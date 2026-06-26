@@ -45,6 +45,19 @@ RANDOM_STATE = 42          # reproducible runs (UMAP becomes single-threaded)
 HDBSCAN_MIN_CLUSTER_SIZE = 80
 HDBSCAN_MIN_SAMPLES = 10   # higher -> more points treated as noise/outliers
 
+# --- Stage 4: theme labeling (c-TF-IDF) ---------------------------------
+THEMES_CSV = OUTPUTS / "themes.csv"
+LABEL_NGRAM_MAX = 2        # allow unigrams + bigrams ("sea ice", "ice shelf")
+LABEL_MIN_DF = 5           # ignore terms appearing in <5 papers (rare noise)
+LABEL_TOP_TERMS = 10       # keywords kept per theme
+# Domain words so generic they'd label every cluster; drop them so the
+# *distinctive* vocabulary of each theme surfaces.
+LABEL_EXTRA_STOPWORDS = [
+    "antarctic", "antarctica", "antarctican", "southern", "ocean",
+    "study", "studies", "results", "using", "based", "data", "showed",
+    "observed", "high", "low", "research", "paper", "analysis",
+]
+
 # --- OpenAlex query ------------------------------------------------------
 # OpenAlex is a free, open scholarly index (no API key needed). The "polite
 # pool" just asks that you identify yourself with an email for faster, more

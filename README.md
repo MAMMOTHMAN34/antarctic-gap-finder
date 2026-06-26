@@ -1,9 +1,24 @@
 # Antarctic Research Gap Finder
 
-## Why this is interesting
+Most literature reviews tell you what has already been studied. This project flips that question around: instead of summarising the past, it tries to spot where the field is heading next.
 
-Most literature reviews reveal what *has* been studied. On the other hand,
-this project aims to find out emerging topics, via embedding the whole corpus and looking for **sparse but accelerating** regions. This intersection of low density and high citation velocity is a quantitative definition of a "research gap."
+The idea is simple. A topic with very few papers but fast-growing citations is a signal that something is starting to matter to researchers, even though almost nobody has written about it yet. Low paper density plus high citation velocity gives a quantitative definition of a "research gap".
+
+## Why Antarctica
+
+I picked Antarctic research specifically because I'm interested in environmental data, and it's a field that's growing fast but still relatively underexplored with this kind of quantitative approach.
+
+## Beyond Antarctica
+
+The pipeline isn't specific to polar science. Feed it any field's papers and citation data, and it'll point to the same kind of white space, areas that are under-studied relative to how fast attention is growing.
+
+## How it works
+
+I take the full corpus of roughly 12k Antarctic research papers and embed each one using SPECTER2, a model built specifically for scientific-document similarity, trained on the citation graph rather than generic text. These embeddings get reduced and clustered using UMAP and HDBSCAN to map out the actual research themes in the field.
+
+From there, the gap detector looks for clusters that are sparse (few papers) but accelerating (citations growing fast for the papers that do exist).
+
+I aim to find out the top 3 research questions Antarctic data science hasn't answered yet.
 
 ## Pipeline
 
