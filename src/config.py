@@ -21,8 +21,12 @@ EMBEDDINGS_NPY = DATA / "embeddings.npy"
 # want for clustering.
 SPECTER2_BASE = "allenai/specter2_base"
 SPECTER2_ADAPTER = "allenai/specter2"
-EMBED_BATCH_SIZE = 16     # lower this if your Mac runs low on memory
-EMBED_MAX_TOKENS = 512    # SPECTER2's context limit
+EMBED_MAX_TOKENS = 512    # SPECTER2's context limit (per paper)
+# Token-budget batching: cap each batch by total tokens, not paper count, so
+# batches of long abstracts stay small and never OOM the Apple GPU. This is the
+# single setting that keeps memory flat; lower it if you ever see an OOM.
+EMBED_TOKENS_PER_BATCH = 8000
+EMBED_MAX_BATCH = 64      # also cap count, so tiny-abstract batches stay sane
 
 # --- OpenAlex query ------------------------------------------------------
 # OpenAlex is a free, open scholarly index (no API key needed). The "polite
