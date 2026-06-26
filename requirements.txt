@@ -1,0 +1,17 @@
+# --- Stage 1: data acquisition ---
+requests>=2.31
+pandas>=2.1
+pyarrow>=14.0      # parquet engine
+tqdm>=4.66
+
+# --- Stage 2: embeddings ---
+torch>=2.2
+transformers>=4.40
+adapters>=0.2          # SPECTER2 = base encoder + a loadable adapter
+
+# --- Stages 3-6: clustering, labeling, gaps, viz (installed later) ---
+# umap-learn>=0.5
+# hdbscan>=0.8
+# scikit-learn>=1.4
+# matplotlib>=3.8
+# plotly>=5.20
