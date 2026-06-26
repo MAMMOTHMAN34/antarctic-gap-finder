@@ -1,15 +1,15 @@
-"""Stage 1 — Acquire the corpus.
+"""Stage 1: Acquire the corpus.
 
 Pull Antarctic research papers from the OpenAlex API and save a tidy table to
-`data/papers.parquet`. We keep only the fields the rest of the pipeline needs:
+`data/papers.parquet`. Only keep the fields the rest of the pipeline needs:
 
     id, title, abstract, year, cited_by_count, venue, doi, concepts
 
 Run:
-    python -m src.fetch_openalex          # from the project root
+    python -m src.fetch_openalex
 
 OpenAlex returns abstracts as an "inverted index" (word -> positions) to dodge
-copyright on full text. We rebuild readable text from it; that text is what
+copyright on full text. I rebuild readable text from it; that text is what
 SPECTER2 will embed in Stage 2.
 """
 

@@ -1,7 +1,7 @@
-"""Stage 4 — Name each theme with c-TF-IDF.
+"""Stage 4: Name each theme with c-TF-IDF.
 
-We have 39 clusters but only numbers. c-TF-IDF (class-based TF-IDF, the idea
-behind BERTopic's labels) gives each cluster a name *from the papers' own words*:
+I have 39 clusters but only numbers. c-TF-IDF (class-based TF-IDF, the idea
+behind BERTopic's labels) gives each cluster a name from the papers' own words:
 
   1. Treat every cluster as one big document (all its papers concatenated).
   2. Count words per cluster.
@@ -10,9 +10,8 @@ behind BERTopic's labels) gives each cluster a name *from the papers' own words*
      Words common to every cluster (e.g. "ice") get a low weight; words that
      concentrate in one cluster score high. The top-weighted words are the label.
 
-This is why we don't just reuse OpenAlex's concept tags: these labels are
-derived independently from our own embedding-driven clusters, which makes the
-themes ours to defend.
+This is why I don't just reuse OpenAlex's concept tags: these labels are
+derived independently from the embedding-driven clusters.
 
 Run:
     python -m src.label

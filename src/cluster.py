@@ -1,18 +1,15 @@
-"""Stage 3 — Reduce and cluster the embeddings into research themes.
+"""Stage 3: Reduce and cluster the embeddings into research themes.
 
 SPECTER2 gives us a 768-d vector per paper, but two things are hard in 768-d:
-clustering (everything looks far apart — the "curse of dimensionality") and
-plotting. So we use UMAP to project the vectors down, then HDBSCAN to find
+clustering and plotting. So, I use UMAP to project the vectors down, then HDBSCAN to find
 clusters.
 
-Two projections, on purpose:
+Two projections:
   * UMAP -> 5-D : a denser space that HDBSCAN clusters more cleanly.
   * UMAP -> 2-D : purely for the map we draw.
 
-HDBSCAN is density-based, which matters for this project: it finds clusters of
-*varying* density and labels genuinely sparse points as noise (-1) instead of
-forcing them into a theme. Those sparse regions are exactly the gaps we hunt for
-in Stage 5.
+HDBSCAN is density-based, which matters for this project: it finds clusters of varying density and labels genuinely sparse points as noise (-1) instead of
+forcing them into a theme. Those sparse regions are exactly the gaps I hunt for in Stage 5.
 
 Run:
     python -m src.cluster

@@ -1,4 +1,4 @@
-"""Stage 2 — Embed each paper with SPECTER2.
+"""Stage 2: Embed each paper with SPECTER2.
 
 SPECTER2 maps a paper's (title + abstract) to a single 768-dimensional vector
 such that papers that cite / are cited by each other land near each other in
@@ -9,12 +9,12 @@ Run:
     python -m src.embed
 
 Output: `data/embeddings.npy`, shape (n_papers, 768), row-aligned with
-`papers.parquet`. We cache it so this ~10-20 min step only runs once.
+`papers.parquet`. Cache it so this step only runs once.
 
 Key SPECTER2 details:
   * Input format is  title + [SEP] + abstract  (the model was trained this way).
   * The paper vector is the [CLS] token, i.e. row 0 of the last hidden state.
-  * We load the "proximity" adapter — the variant tuned for similarity.
+  * Load the "proximity" adapter.
 """
 
 from __future__ import annotations

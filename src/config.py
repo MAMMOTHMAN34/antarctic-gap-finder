@@ -56,7 +56,25 @@ LABEL_EXTRA_STOPWORDS = [
     "antarctic", "antarctica", "antarctican", "southern", "ocean",
     "study", "studies", "results", "using", "based", "data", "showed",
     "observed", "high", "low", "research", "paper", "analysis",
+    "mml", "math", "mrow", "msub", "msup", "mi", "mo", "mn",  # MathML leakage
 ]
+
+# --- Stage 5: gap detection ---------------------------------------------
+GAPS_CSV = OUTPUTS / "gaps.csv"
+GAP_MAP_PNG = OUTPUTS / "gap_map.png"
+# Citations accrue up to "now"; use a fixed reference year so runs are stable.
+REFERENCE_YEAR = 2025
+RECENT_FROM = 2021         # papers from here on count as "recent"
+# A gap = under-studied (few papers) but accelerating (high citation velocity)
+# and current (recent). These weights combine the three standardized signals.
+GAP_W_VELOCITY = 1.0
+GAP_W_RECENCY = 0.5
+GAP_W_SIZE = 1.0           # subtracted: larger themes are less of a "gap"
+
+# --- Stage 6: report ----------------------------------------------------
+REPORT_MD = OUTPUTS / "report.md"
+REPORT_TOP_GAPS = 3        # how many gap themes to write up as questions
+REPORT_REP_PAPERS = 6      # representative papers shown per gap
 
 # --- OpenAlex query ------------------------------------------------------
 # OpenAlex is a free, open scholarly index (no API key needed). The "polite

@@ -5,6 +5,9 @@ data/raw/
 outputs/*.png
 outputs/*.html
 outputs/*.csv
+# ...but keep the two showcase figures so they render in the README on GitHub.
+!outputs/landscape.png
+!outputs/gap_map.png
 
 # Python
 __pycache__/
