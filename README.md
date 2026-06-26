@@ -28,6 +28,7 @@ emerging, under-explored ones:
 
 ![Research landscape](outputs/landscape.png)
 *The Antarctic research landscape: each island is a theme found from text alone.*
+**[Explore the interactive map →](https://raw.githack.com/MAMMOTHMAN34/antarctic-gap-finder/main/outputs/landscape.html)**
 
 ![Gap map](outputs/gap_map.png)
 *Upper-left = small but fast-cited. The bright points are the candidate gaps.*

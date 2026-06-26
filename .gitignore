@@ -5,9 +5,10 @@ data/raw/
 outputs/*.png
 outputs/*.html
 outputs/*.csv
-# ...but keep the two showcase figures so they render in the README on GitHub.
+# ...but keep the showcase figures + interactive map so they're viewable on GitHub.
 !outputs/landscape.png
 !outputs/gap_map.png
+!outputs/landscape.html
 
 # Python
 __pycache__/
