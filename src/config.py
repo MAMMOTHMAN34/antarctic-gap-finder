@@ -76,6 +76,9 @@ REPORT_MD = OUTPUTS / "report.md"
 REPORT_TOP_GAPS = 3        # how many gap themes to write up as questions
 REPORT_REP_PAPERS = 6      # representative papers shown per gap
 
+# --- Optional: interactive landscape (Plotly) ---------------------------
+LANDSCAPE_HTML = OUTPUTS / "landscape.html"
+
 # --- OpenAlex query ------------------------------------------------------
 # OpenAlex is a free, open scholarly index (no API key needed). The "polite
 # pool" just asks that you identify yourself with an email for faster, more
