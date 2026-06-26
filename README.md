@@ -46,6 +46,25 @@ See [`outputs/report.md`](outputs/report.md) for the evidence behind each.
 > **What the gap signal is and isn't:** it flags themes that are *small but
 > high-impact-per-paper and recent*. It is not the same as "underfunded": a hot, well-funded topic can still be small and fast-growing.
 
+## Limitations & next steps
+
+A few things I'd want to keep in mind:
+
+- **The keyword sweep isn't perfect.** Searching for "Antarctic" terms pulls in a few
+  false positives, e.g. a whole cluster about *Candida antarctica* lipase (an enzyme
+  named after the continent, not Antarctic science). A topic-classifier filter would clean
+  this up.
+- **Citations are a snapshot.** Very recent papers (2024) haven't had time to accumulate
+  citations. I divide citations by paper age to compensate, but the most recent year is
+  still noisy. Using OpenAlex's year-by-year citation counts would give a truer *velocity*
+  than total/age.
+- **Scope.** English-only, abstracts (not full text), 2010–2024. The themes also depend on
+  the clustering settings; different HDBSCAN parameters give coarser or finer themes.
+
+**Next steps:** swap in true year-by-year citation velocity, validate themes against a
+domain expert, and run the same pipeline on a non-polar field to test how general the
+method is.
+
 ## Pipeline
 
 | Stage | Script | Output |
