@@ -28,6 +28,23 @@ EMBED_MAX_TOKENS = 512    # SPECTER2's context limit (per paper)
 EMBED_TOKENS_PER_BATCH = 8000
 EMBED_MAX_BATCH = 64      # also cap count, so tiny-abstract batches stay sane
 
+# --- Stage 3: dimensionality reduction + clustering ---------------------
+CLUSTERS_PARQUET = DATA / "clusters.parquet"   # id, cluster, x, y per paper
+LANDSCAPE_PNG = OUTPUTS / "landscape.png"
+
+# We run UMAP twice: a moderate-dim projection that HDBSCAN clusters on (dense
+# spaces cluster better than raw 768-d), and a 2-D projection purely for the map.
+UMAP_CLUSTER_DIMS = 5
+UMAP_NEIGHBORS = 15        # ~how local vs global the structure is
+UMAP_MIN_DIST = 0.0        # 0.0 packs points tightly -> cleaner clusters
+UMAP_METRIC = "cosine"     # right metric for transformer embeddings
+RANDOM_STATE = 42          # reproducible runs (UMAP becomes single-threaded)
+
+# HDBSCAN finds clusters of varying density and leaves outliers unlabeled (-1).
+# With ~12k papers, ~80 keeps themes substantive rather than dozens of tiny ones.
+HDBSCAN_MIN_CLUSTER_SIZE = 80
+HDBSCAN_MIN_SAMPLES = 10   # higher -> more points treated as noise/outliers
+
 # --- OpenAlex query ------------------------------------------------------
 # OpenAlex is a free, open scholarly index (no API key needed). The "polite
 # pool" just asks that you identify yourself with an email for faster, more
